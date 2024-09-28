@@ -1,0 +1,14 @@
+\api
+\.tdlib
+/cmd/app/database
+
+realconfig.go
+
+demo.exe
+
+libcrypto-3-x64.dll
+libssl-3-x64.dll
+tdjson.dll
+zlib1.dll
+
+tokens.db
