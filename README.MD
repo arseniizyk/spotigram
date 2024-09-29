@@ -41,7 +41,7 @@ ___
   ```
 
 ### Использование
-**При первом запуске приложение создает директории `.tdlib` и `database`, где будет хранить логины телеграмма и спотифая, далее вводить данные не придется, обновляться токены будут сами при запуске**
+**При первом запуске приложение создает директории `.tdlib` и `/database`, где будет хранить логины телеграмма и спотифая, далее вводить данные не придется, обновляться токены будут сами при запуске**
 
 **Работа со Spotify происходит через [Spotify API](https://developer.spotify.com/documentation/web-api) <br>C Telegram через [TDlib](https://core.telegram.org/tdlib), при помощи [go-tdlib](https://github.com/zelenin/go-tdlib)**
 
@@ -73,7 +73,7 @@ ___
 
 ### **Usage**
 ___
-**Upon the first launch, the application creates the directories .`tdlib` and `database`, where the Telegram and Spotify logins will be stored. You won’t need to enter the data again.**
+**Upon the first launch, the application creates the directories `.tdlib` and `/database`, where the Telegram and Spotify logins will be stored. You won’t need to enter the data again.**
 
 **Interaction with Spotify is done through the [Spotify API](https://developer.spotify.com/documentation/web-api) <br>And with Telegram through [TDlib](https://core.telegram.org/tdlib) using [go-tdlib](https://github.com/zelenin/go-tdlib)**
 
