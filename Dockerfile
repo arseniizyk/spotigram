@@ -1,7 +1,3 @@
-# probably docker not working
-# probably docker not working
-# probably docker not working
-
 FROM golang:1.23-alpine
 RUN apk add --no-cache \
   alpine-sdk \
@@ -32,10 +28,8 @@ ENV CGO_ENABLED=1 \
   CGO_LDFLAGS="-L/usr/local/tdlib/lib -ltdjson" \
   LD_LIBRARY_PATH=/usr/local/tdlib/lib
 
-RUN go build -trimpath -ldflags="-s -w" -o app.exe ./cmd/app/main.go
+WORKDIR /app/cmd/app
+
+CMD [ "go", "run", "." ]
 
 EXPOSE 8888
-
-CMD [ "./app.exe" ]
-
-
