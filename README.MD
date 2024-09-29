@@ -49,7 +49,7 @@ ___
 
 ## <span id="en">English</span>
 ### **Installation**
-**1. Download and compile TDlib by [TDlib build instructions](https://tdlib.github.io/td/build.html). After compilation move all .dll files from `tdlib/bin` to `cmd/app/`, they are also needed to run the `.exe`**
+**1. Download and compile TDlib by [TDlib build instructions](https://tdlib.github.io/td/build.html). After compilation move all `.dll` files from `tdlib/bin` to `cmd/app/`, they are also needed to run `.exe`**
 
 **2. To run app, you should define folder with TDlib in the environment variables**
 
