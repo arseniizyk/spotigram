@@ -75,5 +75,5 @@ ___
 ___
 **Upon the first launch, the application creates the directories .`tdlib` and `database`, where the Telegram and Spotify logins will be stored. You won’t need to enter the data again.**
 
-**Interaction with Spotify is done through the [Spotify API](https://developer.spotify.com/documentation/web-api) <br>And with Telegram through TDlib using [go-tdlib](https://github.com/zelenin/go-tdlib)**
+**Interaction with Spotify is done through the [Spotify API](https://developer.spotify.com/documentation/web-api) <br>And with Telegram through [TDlib](https://core.telegram.org/tdlib) using [go-tdlib](https://github.com/zelenin/go-tdlib)**
 
