@@ -32,6 +32,14 @@ ___
 
 **3. Создать `.env` файл в директории `cmd/app`, в который добавить необходимые токены, используемые в `/config`**
 
++ .env
+  ```env
+  SPOTIFY_CLIENT_ID=YOUR_SPOTIFY_CLIENT_ID
+  SPOTIFY_CLIENT_SECRET=YOUR_SPOTIFY_CLIENT_SECRET
+  TELEGRAM_API_ID=YOUR_TELEGRAM_API_ID
+  TELEGRAM_API_HASH=YOUR_TG_API_HASH
+  ```
+
 ### Использование
 **При первом запуске приложение создает директории `.tdlib` и `database`, где будет хранить логины телеграмма и спотифая, далее вводить данные не придется, обновляться токены будут сами при запуске**
 
@@ -54,6 +62,14 @@ ___
     ```
 
 **3. Create .env file in `cmd/app` with tokens which used in `config/`**
+
++ .env
+  ```env
+  SPOTIFY_CLIENT_ID=YOUR_SPOTIFY_CLIENT_ID
+  SPOTIFY_CLIENT_SECRET=YOUR_SPOTIFY_CLIENT_SECRET
+  TELEGRAM_API_ID=YOUR_TELEGRAM_API_ID
+  TELEGRAM_API_HASH=YOUR_TG_API_HASH
+  ```
 
 ### **Usage**
 ___
