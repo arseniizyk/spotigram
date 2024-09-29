@@ -13,9 +13,7 @@ var TdlibClient *client.Client
 
 func handleError(text string, err error) {
 	if err != nil {
-		// log.Fatalf(text, err)
-		fmt.Println(text, err)
-
+		log.Fatalf("%s: %v", text, err)
 	}
 }
 
@@ -32,12 +30,12 @@ func AuthorizeTelegram() {
 		UseChatInfoDatabase: false,
 		UseMessageDatabase:  false,
 		UseSecretChats:      false,
-		ApiId:               config.TelegramAPI_id,
-		ApiHash:             config.TelegramAPI_hash,
+		ApiId:               config.Conf.TelegramAPI_id,
+		ApiHash:             config.Conf.TelegramAPI_hash,
 		SystemLanguageCode:  "en",
-		DeviceModel:         "SpotiGram",
+		DeviceModel:         "Spotigram",
 		SystemVersion:       "1.0.0",
-		ApplicationVersion:  "1.0.2",
+		ApplicationVersion:  "1.0.3",
 		// EnableStorageOptimizer: true,
 		// IgnoreFileNames:        false,
 	}
@@ -65,9 +63,9 @@ func AuthorizeTelegram() {
 	go UpdateCurrentTrack()
 }
 
-func ChangeBio() {
+func ChangeBio(song string) {
 	result, err := TdlibClient.SetBio(&client.SetBioRequest{
-		Bio: FormattedSong,
+		Bio: song,
 	})
 	handleError("ChangeBio error:", err)
 	fmt.Println(result)

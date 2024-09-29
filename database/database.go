@@ -51,7 +51,7 @@ func InitDatabase() {
 func ReadDatabase() error {
 	row := DB.QueryRow("SELECT username, spotify_id, spotify_refresh_token, last_login FROM users")
 
-	err = row.Scan(&models.User.Name, &models.User.ID, &models.User.SpotifyRefreshToken, &models.User.Last_login)
+	err = row.Scan(&models.UserInstance.Name, &models.UserInstance.Name, &models.UserInstance.SpotifyRefreshToken, &models.UserInstance.LastLogin)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			fmt.Println("Данные не найдены, авторизуйтесь")
@@ -60,7 +60,7 @@ func ReadDatabase() error {
 		}
 		return err
 	}
-	fmt.Println("Данные найдены: ", models.User)
+	fmt.Println("Данные найдены: ", models.UserInstance)
 	return nil
 }
 
@@ -69,7 +69,7 @@ func WriteDatabase() error {
 	query := `INSERT INTO users (username, spotify_id, spotify_refresh_token, last_login)
 	VALUES ($1, $2, $3, CURRENT_TIMESTAMP)`
 
-	_, err := DB.Exec(query, models.User.Name, models.User.ID, models.User.SpotifyRefreshToken)
+	_, err := DB.Exec(query, models.UserInstance.Name, models.UserInstance.Name, models.UserInstance.SpotifyRefreshToken)
 	if err != nil {
 		log.Fatal("Что-то пошло не так при попытке записи в базу данных")
 	}
@@ -78,7 +78,7 @@ func WriteDatabase() error {
 }
 
 func UpdateDatabase() error {
-	_, err := DB.Exec("UPDATE users SET spotify_refresh_token = $1, last_login = CURRENT_TIMESTAMP WHERE spotify_id = $2", models.User.SpotifyRefreshToken, models.User.ID)
+	_, err := DB.Exec("UPDATE users SET spotify_refresh_token = $1, last_login = CURRENT_TIMESTAMP WHERE spotify_id = $2", models.UserInstance.SpotifyRefreshToken, models.UserInstance.Name)
 	if err != nil {
 		fmt.Println("Ошибка при обновлении базы данных: ", err)
 		return nil

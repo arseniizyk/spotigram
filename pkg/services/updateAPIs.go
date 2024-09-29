@@ -2,6 +2,7 @@ package services
 
 import (
 	"Spotigram/database"
+	"fmt"
 	"time"
 )
 
@@ -13,7 +14,7 @@ func UpdateAPI() {
 	for {
 		select {
 		case <-ticker.C:
-			GetPublicAccessToken()
+			// GetPublicAccessToken()
 			RefreshUserAccessToken()
 			database.UpdateDatabase()
 		}
@@ -21,18 +22,22 @@ func UpdateAPI() {
 }
 
 func UpdateCurrentTrack() {
-	timing := 60
+	timing := 15
 	ticker := time.NewTicker(time.Duration(timing) * time.Second)
 	defer ticker.Stop()
+	var prevTrack string
 
 	for {
 		select {
 		case <-ticker.C:
-			GetCurrentlyPlayingTrackHandler()
-			ChangeBio()
-			// if !trackResponse.Playing {
-			// 	timing = 360
-			// }
+			currentTrack := GetCurrentlyPlayingTrackHandler()
+			if prevTrack != currentTrack {
+				prevTrack = currentTrack
+				fmt.Println(currentTrack)
+				ChangeBio(currentTrack)
+			} else {
+				fmt.Println("Track wasn't changed.")
+			}
 		}
 	}
 }

@@ -5,6 +5,7 @@
 realconfig.go
 
 demo.exe
+.env
 
 libcrypto-3-x64.dll
 libssl-3-x64.dll

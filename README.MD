@@ -30,6 +30,8 @@ ___
     $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"
     ```
 
+**3. Создать `.env` файл в директории `cmd/app`, в который добавить необходимые токены, используемые в `/config`**
+
 ### Использование
 **При первом запуске приложение создает директории `.tdlib` и `database`, где будет хранить логины телеграмма и спотифая, далее вводить данные не придется, обновляться токены будут сами при запуске**
 
@@ -43,12 +45,15 @@ ___
 
 **2. To run app, you should define folder with TDlib in the environment variables**
 
+
   + Powershell:
     ```Powershell
     $env:CGO_ENABLED=1; 
     $env:CGO_CFLAGS="-IC:/td/tdlib/include"; 
     $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"
     ```
+
+**3. Create .env file in `cmd/app` with tokens which used in `config/`**
 
 ### **Usage**
 ___
