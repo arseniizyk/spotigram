@@ -12,6 +12,7 @@ type User struct {
 	SpotifyAccessToken  string
 	SpotifyRefreshToken string
 	LastLogin           string
+	TelegramBio         string
 }
 
 type TokenResponse struct {

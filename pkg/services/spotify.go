@@ -170,7 +170,7 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 	models.UserInstance.SpotifyAccessToken = tokenResponse.Access_token
 	models.UserInstance.SpotifyRefreshToken = tokenResponse.Refresh_token
 
-	GetUsername()
+	getUsername()
 	database.WriteDatabase()
 
 	browser.OpenURL("http://localhost:8888/close")
@@ -178,7 +178,7 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // Получение имени пользователя для последующей записи в базу данных
-func GetUsername() {
+func getUsername() {
 	req, err := http.NewRequest("GET", models.Endpoint, nil)
 	handleError("Request error: ", err)
 	req.Header.Add("Authorization", "Bearer "+models.UserInstance.SpotifyAccessToken)

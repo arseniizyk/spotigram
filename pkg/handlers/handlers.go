@@ -3,13 +3,29 @@ package handlers
 import (
 	"Spotigram/config"
 	"Spotigram/database"
+	"Spotigram/models"
 	"Spotigram/pkg/services"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 func Handlers() {
+	// Обработка завершения
+	signals := make(chan os.Signal, 1)
+
+	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
+
+	go func() {
+		sig := <-signals
+		log.Printf("Received signal: %s", sig)
+		services.ChangeBio(models.UserInstance.TelegramBio)
+		os.Exit(0)
+	}()
+
 	// База данных
 	database.InitDatabase()
 	database.ReadDatabase()

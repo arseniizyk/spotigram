@@ -2,6 +2,7 @@ package services
 
 import (
 	"Spotigram/config"
+	"Spotigram/models"
 	"fmt"
 	"log"
 	"os"
@@ -39,7 +40,7 @@ func AuthorizeTelegram() {
 		SystemLanguageCode:  "en",
 		DeviceModel:         "Spotigram",
 		SystemVersion:       "1.0.0",
-		ApplicationVersion:  "1.0.4",
+		ApplicationVersion:  "1.0.5",
 		// EnableStorageOptimizer: true,
 		// IgnoreFileNames:        false,
 	}
@@ -65,6 +66,7 @@ func AuthorizeTelegram() {
 	log.Printf("Me: %s %s [%s]", me.FirstName, me.LastName, me.Usernames)
 	// Запуск функции обновления трека сразу после авторизации в телеграмм
 	go UpdateCurrentTrack()
+	getBio(me)
 }
 
 func ChangeBio(song string) {
@@ -73,4 +75,13 @@ func ChangeBio(song string) {
 	})
 	handleError("ChangeBio error:", err)
 	fmt.Println(result)
+}
+
+func getBio(me *client.User) {
+	result, err := TdlibClient.GetUserFullInfo(&client.GetUserFullInfoRequest{
+		UserId: me.Id,
+	})
+	handleError("Что-то пошло не так при попытке получить Bio", err)
+	models.UserInstance.TelegramBio = result.Bio.Text
+	log.Println("Bio:", models.UserInstance.TelegramBio)
 }

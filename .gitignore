@@ -4,7 +4,7 @@
 
 realconfig.go
 
-demo.exe
+*.exe
 .env
 
 libcrypto-3-x64.dll
