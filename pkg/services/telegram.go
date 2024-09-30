@@ -4,7 +4,9 @@ import (
 	"Spotigram/config"
 	"fmt"
 	"log"
+	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/zelenin/go-tdlib/client"
 )
@@ -13,12 +15,14 @@ var TdlibClient *client.Client
 
 func handleError(text string, err error) {
 	if err != nil {
-		log.Fatalf("%s: %v", text, err)
+		log.Printf("%v : %v\nОкно закроется автоматически через 15 секунд.", text, err)
+		time.Sleep(15 * time.Second)
+		os.Exit(1)
 	}
 }
 
+// client authorizer
 func AuthorizeTelegram() {
-	// client authorizer
 	authorizer := client.ClientAuthorizer()
 	go client.CliInteractor(authorizer)
 
@@ -35,7 +39,7 @@ func AuthorizeTelegram() {
 		SystemLanguageCode:  "en",
 		DeviceModel:         "Spotigram",
 		SystemVersion:       "1.0.0",
-		ApplicationVersion:  "1.0.3",
+		ApplicationVersion:  "1.0.4",
 		// EnableStorageOptimizer: true,
 		// IgnoreFileNames:        false,
 	}

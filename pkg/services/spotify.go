@@ -12,6 +12,8 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
+	"time"
 
 	"github.com/pkg/browser"
 )
@@ -34,7 +36,7 @@ func generateRandomString(length int) string {
 	randomBytes := make([]byte, length)
 	_, err := rand.Read(randomBytes)
 	if err != nil {
-		panic(err) // обработка ошибки при генерации случайных чисел
+		handleError("Ошибка генерации чисел", err) // обработка ошибки при генерации случайных чисел
 	}
 
 	for i := 0; i < length; i++ {
@@ -121,12 +123,14 @@ func RefreshUserAccessToken() {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		log.Fatalf("Ошибка при обновлении пользовательского токена: %d", resp.StatusCode)
+		log.Printf("Ошибка при обновлении пользовательского токена: %d", resp.StatusCode)
+		log.Printf("Окно закроется через 15 секунд")
+		time.Sleep(15 * time.Second)
+		os.Exit(1)
 	}
 
-	if err := json.NewDecoder(resp.Body).Decode(&tokenResponse); err != nil {
-		log.Fatalf("Ошибка при декодировании JSON: %v", err)
-	}
+	err = json.NewDecoder(resp.Body).Decode(&tokenResponse)
+	handleError("Ошибка при декодировании JSON", err)
 
 	models.UserInstance.SpotifyAccessToken = tokenResponse.Access_token
 	models.UserInstance.SpotifyRefreshToken = tokenResponse.Refresh_token
@@ -150,26 +154,18 @@ func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	req, err := http.NewRequest("POST", config.Conf.SpotifyTokenURL, bytes.NewBufferString(params.Encode()))
-	if err != nil {
-		http.Error(w, "Не удалось создать запрос", http.StatusInternalServerError)
-		return
-	}
+	handleError("Ошибка при формировании запроса", err)
 
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("Authorization", "Basic "+encodedCredentials)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
-	if err != nil {
-		http.Error(w, "Ошибка при отправке запроса на стадии получения пользовательского токена: "+err.Error(), http.StatusInternalServerError)
-		return
-	}
+	handleError("Ошибка при отправке запроса", err)
 	defer resp.Body.Close()
 
-	if err := json.NewDecoder(resp.Body).Decode(&tokenResponse); err != nil {
-		http.Error(w, "Ошибка при декодировании JSON на стадии получения пользовательского токена: "+err.Error(), http.StatusInternalServerError)
-		return
-	}
+	err = json.NewDecoder(resp.Body).Decode(&tokenResponse)
+	handleError("Ошибка при декодировании JSON", err)
 
 	models.UserInstance.SpotifyAccessToken = tokenResponse.Access_token
 	models.UserInstance.SpotifyRefreshToken = tokenResponse.Refresh_token
@@ -193,13 +189,14 @@ func GetUsername() {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		log.Fatalf("Request failed with status code: %d", resp.StatusCode)
+		log.Printf("Ошибка при получении имени пользователя: %d", resp.StatusCode)
+		log.Printf("Окно закроется через 15 секунд")
+		time.Sleep(15 * time.Second)
+		os.Exit(1)
 	}
 
-	if err := json.NewDecoder(resp.Body).Decode(&models.UserInstance); err != nil {
-		log.Fatalf("JSON Decode error: %v", err)
-	}
-
+	err = json.NewDecoder(resp.Body).Decode(&models.UserInstance)
+	handleError("Ошибка при декодировании JSON", err)
 }
 
 func GetCurrentlyPlayingTrackHandler() string {
@@ -214,9 +211,8 @@ func GetCurrentlyPlayingTrackHandler() string {
 	handleError("Ошибка при отправке GET запроса", err)
 	defer resp.Body.Close()
 
-	if err := json.NewDecoder(resp.Body).Decode(&trackResponse); err != nil {
-		log.Fatalf("Ошибка при декодировании JSON %v", err)
-	}
+	err = json.NewDecoder(resp.Body).Decode(&trackResponse)
+	handleError("Ошибка при декодировании JSON", err)
 
 	var formattedArtists string
 	lengthArtists := len(trackResponse.Item.Artists)
