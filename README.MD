@@ -52,7 +52,7 @@ ___
 ## <span id="en">English</span>
 ### **Installation**
 
-**1. Register [Telegram app](https://my.telegram.org/auth?to=apps) save `api_id` and `api_hash`(dont public cuz you cant change it) and register [Spotify app](https://developer.spotify.com/dashboard), save `client_id` and `client_secret` but also dont public it**
+**1. Register [Telegram app](https://my.telegram.org/auth?to=apps) save `api_id` and `api_hash`(dont publish cuz you cant change it) and register [Spotify app](https://developer.spotify.com/dashboard), save `client_id` and `client_secret` but also dont publish it**
 
 **2. Download and compile TDlib using [TDlib build instructions](https://tdlib.github.io/td/build.html). After compilation move all `.dll` files from `tdlib/bin` to `cmd/app/`, they are also needed to run `.exe`**
 
