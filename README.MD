@@ -19,9 +19,11 @@ ___
 
 ### Установка
 
-**1. Скачать и скомпилировать TDlib библиотеку при помощи [TDlib build instructions](https://tdlib.github.io/td/build.html). После компиляции перенести все `.dll` файлы из `tdlib/bin` в `cmd/app/`, они так же необходимы если запускать через `.exe`**
+**1. Зарегистрировать [TG приложение](https://my.telegram.org/auth?to=apps), сохранить api_id и api_hash(но не публиковать, т.к потом нельзя будет изменить), зарегистрировать [Spotify приложение](https://developer.spotify.com/dashboard), сохранить client_id и client_secret, но так же не публиковать в общий доступ**
 
-**2. Для запуска необходимо указать папку с tdlib в переменную среды**
+**2. Скачать и скомпилировать TDlib библиотеку при помощи [TDlib build instructions](https://tdlib.github.io/td/build.html). После компиляции перенести все `.dll` файлы из `tdlib/bin` в `cmd/app/`, они так же необходимы если запускать через `.exe`**
+
+**3. Для запуска необходимо указать папку с tdlib в переменную среды**
 
   + Powershell:
     ```Powershell
@@ -30,7 +32,7 @@ ___
     $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"
     ```
 
-**3. Создать `.env` файл в директории `cmd/app`, в который добавить необходимые токены, используемые в `/config`**
+**4. Создать `.env` файл в директории `cmd/app`, в который добавить токены полученные на 1 шаге**
 
 + .env
   ```env
@@ -41,7 +43,7 @@ ___
   ```
 
 ### Использование
-**При первом запуске приложение создает директории `.tdlib` и `/database`, где будет хранить логины телеграмма и спотифая, далее вводить данные не придется, обновляться токены будут сами при запуске**
+**При первом запуске приложение создает директории `.tdlib` и `/database`, где будут храниться логины телеграмма и спотифая, далее вводить данные не придется, обновляться токены будут сами при запуске**
 
 **Работа со Spotify происходит через [Spotify API](https://developer.spotify.com/documentation/web-api) <br>C Telegram через [TDlib](https://core.telegram.org/tdlib), при помощи [go-tdlib](https://github.com/zelenin/go-tdlib)**
 
@@ -49,9 +51,12 @@ ___
 
 ## <span id="en">English</span>
 ### **Installation**
-**1. Download and compile TDlib by [TDlib build instructions](https://tdlib.github.io/td/build.html). After compilation move all `.dll` files from `tdlib/bin` to `cmd/app/`, they are also needed to run `.exe`**
 
-**2. To run app, you should define folder with TDlib in the environment variables**
+**1. Register [TG app](https://my.telegram.org/auth?to=apps) save api_id and api_hash(dont public it cuz you cant change it) and register [Spotify app](https://developer.spotify.com/dashboard), save client_id and client_secret but also dont public it**
+
+**2. Download and compile TDlib using [TDlib build instructions](https://tdlib.github.io/td/build.html). After compilation move all `.dll` files from `tdlib/bin` to `cmd/app/`, they are also needed to run `.exe`**
+
+**3. To run app, you should define folder with TDlib in the environment variables**
 
 
   + Powershell:
@@ -61,7 +66,7 @@ ___
     $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"
     ```
 
-**3. Create .env file in `cmd/app` with tokens which used in `config/`**
+**4. Create .env file in `cmd/app` with tokens from 1 step**
 
 + .env
   ```env
