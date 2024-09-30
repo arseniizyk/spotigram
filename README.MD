@@ -19,7 +19,7 @@ ___
 
 ### Установка
 
-**1. Зарегистрировать [Telegram приложение](https://my.telegram.org/auth?to=apps), сохранить api_id и api_hash(но не публиковать, т.к потом нельзя будет изменить), зарегистрировать [Spotify приложение](https://developer.spotify.com/dashboard), сохранить client_id и client_secret, но так же не публиковать в общий доступ**
+**1. Зарегистрировать [Telegram приложение](https://my.telegram.org/auth?to=apps), сохранить `api_id` и `api_hash`(но не публиковать, т.к потом нельзя будет изменить), зарегистрировать [Spotify приложение](https://developer.spotify.com/dashboard), сохранить `client_id` и `client_secret`, но так же не публиковать в общий доступ**
 
 **2. Скачать и скомпилировать TDlib библиотеку при помощи [TDlib build instructions](https://tdlib.github.io/td/build.html). После компиляции перенести все `.dll` файлы из `tdlib/bin` в `cmd/app/`, они так же необходимы если запускать через `.exe`**
 
@@ -52,7 +52,7 @@ ___
 ## <span id="en">English</span>
 ### **Installation**
 
-**1. Register [Telegram app](https://my.telegram.org/auth?to=apps) save api_id and api_hash(dont public it cuz you cant change it) and register [Spotify app](https://developer.spotify.com/dashboard), save client_id and client_secret but also dont public it**
+**1. Register [Telegram app](https://my.telegram.org/auth?to=apps) save `api_id` and `api_hash`(dont public cuz you cant change it) and register [Spotify app](https://developer.spotify.com/dashboard), save `client_id` and `client_secret` but also dont public it**
 
 **2. Download and compile TDlib using [TDlib build instructions](https://tdlib.github.io/td/build.html). After compilation move all `.dll` files from `tdlib/bin` to `cmd/app/`, they are also needed to run `.exe`**
 
