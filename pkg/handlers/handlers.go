@@ -43,7 +43,6 @@ func Handlers() {
 
 	// Фоновые горутины
 	// go services.GetPublicAccessToken()
-	go services.UpdateAPI()
 
 	// Запуск сервера
 	fmt.Println("Server is running on http://localhost:8888")

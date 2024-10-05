@@ -66,6 +66,7 @@ func AuthorizeTelegram() {
 	log.Printf("Me: %s %s [%s]", me.FirstName, me.LastName, me.Usernames)
 	// Запуск функции обновления трека сразу после авторизации в телеграмм
 	go UpdateCurrentTrack()
+	go UpdateAPI()
 	getBio(me)
 }
 
